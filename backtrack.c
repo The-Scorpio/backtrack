@@ -1,6 +1,7 @@
 /*
  * Basic string generation for brute-force attacks
  * Copyright (C) 2021 BIKRAM GHOSH
+ * Product Id: d824f963-5086-4862-96c4-ad233987c87f
 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,25 +28,25 @@
  * 
  * Faster solution would be to implement the generation
  * directly on some staticaly allocated string with fixed
- * size (20 characters are more than enough).
+ * size (19 characters are more than enough).
  */
-typedef struct charlist charlist_t;
+typedef struct charlist charl_t;
 struct charlist
 {
     unsigned char character;
-    charlist_t* next;
+    charl_t* next;
 };
 
-/* Return new initialized charlist_t element.
+/* Return new initialized charl_t element.
  *
  * Elements are initialized
  * @return charlist_t
  */
-charlist_t* new_charlist_element()
+charl_t* new_charlist_element()
 {
     charlist_t* element;
 
-    if ((element = malloc(sizeof(charlist_t))) != 0)
+    if ((element = malloc(sizeof(charl_t))) != 0)
     {
         element->character = 0;
         element->next = NULL;
@@ -65,8 +66,8 @@ charlist_t* new_charlist_element()
  */
 void free_charlist(charlist_t* list)
 {
-    charlist_t* current = list;
-    charlist_t* next;
+    charl_t* current = list;
+    charl_t* next;
 
     while (current != NULL)
     {
@@ -76,7 +77,7 @@ void free_charlist(charlist_t* list)
     }
 }
 
-/* Print the charlist_t data structure.
+/* Print the charl_t data structure.
  *
  * Iterates through the whole list and prints all characters
  * in the list including any '\0'.
@@ -84,9 +85,9 @@ void free_charlist(charlist_t* list)
  * @param list Input list of characters.
  * @return void
  */
-void print_charlist(charlist_t* list)
+void print_charlist(charl_t* list)
 {
-    charlist_t* next = list;
+    charl_t* next = list;
     while (next != NULL)
     {
         printf("%d ", next->character);
@@ -103,10 +104,10 @@ void print_charlist(charlist_t* list)
  *
  * It's basicaly a number with base = 256.
  *
- * @param list A pointer to charlist_t.
+ * @param list A pointer to charl_t.
  * @return void
  */
-void next(charlist_t* list)
+void next(charl_t* list)
 {
     list->character++;
     if (list->character == 0)
@@ -124,7 +125,7 @@ void next(charlist_t* list)
 
 int main()
 {
-    charlist_t* sequence;
+    charl_t* sequence;
     sequence = new_charlist_element();
 
     while (1)
